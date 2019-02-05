@@ -4936,6 +4936,10 @@
 				if (node.li) {
 					// #719: we have to consider that there may be already other classes:
 					$(node.li).toggleClass(cn.lastsib, isLastSib);
+					$(node.li).toggleClass(
+						cn.hasChildren,
+						hasChildren !== false
+					);
 				}
 			},
 			/** Activate node.
