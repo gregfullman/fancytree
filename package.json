@@ -1,16 +1,13 @@
 {
-  "name": "jquery.fancytree",
+  "name": "@hub/jquery.fancytree",
   "title": "jQuery Fancytree Plugin",
   "description": "JavaScript tree view / tree grid plugin with support for keyboard, inline editing, filtering, checkboxes, drag'n'drop, and lazy loading",
   "version": "2.30.3-0",
   "homepage": "https://github.com/mar10/fancytree",
-  "author": {
-    "name": "Martin Wendt",
-    "url": "http://careers.stackoverflow.com/martin-wendt"
-  },
+  "author": "Martin Wendt (http://careers.stackoverflow.com/martin-wendt)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mar10/fancytree"
+    "url": "git+https://github.com/mar10/fancytree.git"
   },
   "bugs": {
     "url": "https://github.com/mar10/fancytree/issues"
@@ -26,7 +23,11 @@
   "files": [
     "dist/"
   ],
-  "directories": {},
+  "directories": {
+    "doc": "doc",
+    "lib": "lib",
+    "test": "test"
+  },
   "keywords": [
     "ajax",
     "ecosystem:jquery",
