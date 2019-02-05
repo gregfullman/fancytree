@@ -12,8 +12,8 @@
  * Released under the MIT license
  * https://github.com/mar10/fancytree/wiki/LicenseInfo
  *
- * @version 2.30.2
- * @date 2019-01-13T08:17:01Z
+ * @version 2.30.3-0
+ * @date 2019-02-05T02:09:14Z
  */
 
 (function(factory) {
@@ -168,9 +168,10 @@
 	function activateEmbeddedLink($td) {
 		// $td.find( "a" )[ 0 ].click();  // does not work (always)?
 		// $td.find( "a" ).click();
-		var event = document.createEvent("MouseEvent");
+		var event = document.createEvent("MouseEvent"),
+			a = $td.find("a")[0]; // document.getElementById('nameOfID');
+
 		event = new CustomEvent("click");
-		var a = $td.find("a")[0]; // document.getElementById('nameOfID');
 		a.dispatchEvent(event);
 	}
 
@@ -296,7 +297,7 @@
 	 */
 	$.ui.fancytree.registerExtension({
 		name: "ariagrid",
-		version: "2.30.2",
+		version: "2.30.3-0",
 		// Default options for this extension.
 		options: {
 			// Internal behavior flags

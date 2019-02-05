@@ -73,6 +73,27 @@ ul.fancytree-container span.fancytree-icon.material-icons
 	// color: @fancy-cst-black-87;
 }
 
+ul.fancytree-connectors {
+	&.fancytree-container {
+		li {
+			background-image: data-uri("@{fancy-image-prefix}vline_24.gif");
+			background-position: 0 0;
+
+			&.fancytree-lastsib:not(.fancytree-has-children) {
+				background-image: data-uri("@{fancy-image-prefix}vline_hline_last_24.gif");
+				background-position: 0 0;
+			}
+			&:not(.fancytree-has-children) {
+				background-image: data-uri("@{fancy-image-prefix}vline_hline_notlast_24.gif");
+				background-position: 0 0;
+			}
+			&.fancytree-lastsib.fancytree-has-children {
+				background-image: none;
+			}
+		}
+	}
+}
+
 
 /*******************************************************************************
  * Node titles

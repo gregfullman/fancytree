@@ -9,8 +9,8 @@
  * Released under the MIT license
  * https://github.com/mar10/fancytree/wiki/LicenseInfo
  *
- * @version 2.30.2
- * @date 2019-01-13T08:17:01Z
+ * @version 2.30.3-0
+ * @date 2019-02-05T02:09:14Z
  */
 
 (function(factory) {
@@ -47,7 +47,7 @@
 		EVENT_NAME_MAP = {};
 
 	/*
-*/
+	 */
 	for (i = 0; i < HOOK_NAMES.length; i++) {
 		HOOK_NAME_MAP[HOOK_NAMES[i]] = true;
 	}
@@ -63,7 +63,7 @@
 				/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i
 			);
 
-		if (m && (tem = ua.match(/version\/([\.\d]+)/i)) !== null) {
+		if (m && (tem = ua.match(/version\/([.\d]+)/i)) !== null) {
 			m[2] = tem[1];
 		}
 		m = m ? [m[1], m[2]] : [n, navigator.appVersion, "-?"];
@@ -104,7 +104,7 @@
 		return res;
 	}
 
-	function logHook(name, self, args, extra) {
+	function logHook(name, this_, args, extra) {
 		var res,
 			ctx = args[0],
 			opts = ctx.options.logger,
@@ -115,7 +115,7 @@
 			!opts.traceHooks ||
 			(opts.traceHooks !== true && $.inArray(name, opts.traceHooks) < 0)
 		) {
-			return self._superApply.call(self, args);
+			return this_._superApply(this_, args);
 		}
 		if (
 			opts.timings === true ||
@@ -124,7 +124,7 @@
 			// if( name === "nodeRender" ) { logName += obj; }  // allow timing for recursive calls
 			// logName += " (" + obj + ")";
 			window.console.time(logName);
-			res = self._superApply.call(self, args);
+			res = this_._superApply.call(this_, args);
 			window.console.timeEnd(logName);
 		} else {
 			if (extra) {
@@ -134,7 +134,7 @@
 				// obj.info(logName, ctx);
 				logLine(logName, ctx);
 			}
-			res = self._superApply.call(self, args);
+			res = this_._superApply.call(this_, args);
 		}
 		return res;
 	}
@@ -144,7 +144,7 @@
 	 */
 	$.ui.fancytree.registerExtension({
 		name: "logger",
-		version: "2.30.2",
+		version: "2.30.3-0",
 		// Default options for this extension.
 		options: {
 			logTarget: null, // optional redirect logging to this <div> tag
@@ -164,7 +164,9 @@
 				this.options.extensions[this.options.extensions.length - 1] !==
 				"logger"
 			) {
-				throw "Fancytree 'logger' extension must be listed as last entry.";
+				throw Error(
+					"Fancytree 'logger' extension must be listed as last entry."
+				);
 			}
 			tree.warn(
 				"Fancytree logger extension is enabled (this may be slow).",

@@ -9,8 +9,8 @@
  * Released under the MIT license
  * https://github.com/mar10/fancytree/wiki/LicenseInfo
  *
- * @version 2.30.2
- * @date 2019-01-13T08:17:01Z
+ * @version 2.30.3-0
+ * @date 2019-02-05T02:09:14Z
  */
 
 (function(factory) {
@@ -37,7 +37,7 @@
 
 	function _escapeRegex(str) {
 		/*jshint regexdash:true */
-		return (str + "").replace(/([.?*+\^\$\[\]\\(){}|-])/g, "\\$1");
+		return (str + "").replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
 	}
 
 	function extractHtmlText(s) {
@@ -344,7 +344,7 @@
 	 */
 	$.ui.fancytree.registerExtension({
 		name: "filter",
-		version: "2.30.2",
+		version: "2.30.3-0",
 		// Default options for this extension.
 		options: {
 			autoApply: true, // Re-apply last filter if lazy data is loaded

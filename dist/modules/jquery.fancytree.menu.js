@@ -11,8 +11,8 @@
  * Released under the MIT license
  * https://github.com/mar10/fancytree/wiki/LicenseInfo
  *
- * @version 2.30.2
- * @date 2019-01-13T08:17:01Z
+ * @version 2.30.3-0
+ * @date 2019-02-05T02:09:14Z
  */
 
 (function(factory) {
@@ -32,7 +32,7 @@
 
 	$.ui.fancytree.registerExtension({
 		name: "menu",
-		version: "2.30.2",
+		version: "2.30.3-0",
 		// Default options for this extension.
 		options: {
 			enable: true,

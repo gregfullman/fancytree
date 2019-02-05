@@ -9,8 +9,8 @@
  * Released under the MIT license
  * https://github.com/mar10/fancytree/wiki/LicenseInfo
  *
- * @version 2.30.2
- * @date 2019-01-13T08:17:01Z
+ * @version 2.30.3-0
+ * @date 2019-02-05T02:09:14Z
  */
 
 (function(factory) {
@@ -46,6 +46,7 @@
 
 	/* Convert number to string and prepend +/-; return empty string for 0.*/
 	function offsetString(n) {
+		// eslint-disable-next-line no-nested-ternary
 		return n === 0 ? "" : n > 0 ? "+" + n : "" + n;
 	}
 
@@ -358,7 +359,7 @@
 
 	$.ui.fancytree.registerExtension({
 		name: "dnd",
-		version: "2.30.2",
+		version: "2.30.3-0",
 		// Default options for this extension.
 		options: {
 			// Make tree nodes accept draggables
@@ -506,21 +507,21 @@
 		},
 
 		/*
-	 * Handles drag'n'drop functionality.
-	 *
-	 * A standard jQuery drag-and-drop process may generate these calls:
-	 *
-	 * start:
-	 *     _onDragEvent("start", sourceNode, null, event, ui, draggable);
-	 * drag:
-	 *     _onDragEvent("leave", prevTargetNode, sourceNode, event, ui, draggable);
-	 *     _onDragEvent("over", targetNode, sourceNode, event, ui, draggable);
-	 *     _onDragEvent("enter", targetNode, sourceNode, event, ui, draggable);
-	 * stop:
-	 *     _onDragEvent("drop", targetNode, sourceNode, event, ui, draggable);
-	 *     _onDragEvent("leave", targetNode, sourceNode, event, ui, draggable);
-	 *     _onDragEvent("stop", sourceNode, null, event, ui, draggable);
-	 */
+		 * Handles drag'n'drop functionality.
+		 *
+		 * A standard jQuery drag-and-drop process may generate these calls:
+		 *
+		 * start:
+		 *     _onDragEvent("start", sourceNode, null, event, ui, draggable);
+		 * drag:
+		 *     _onDragEvent("leave", prevTargetNode, sourceNode, event, ui, draggable);
+		 *     _onDragEvent("over", targetNode, sourceNode, event, ui, draggable);
+		 *     _onDragEvent("enter", targetNode, sourceNode, event, ui, draggable);
+		 * stop:
+		 *     _onDragEvent("drop", targetNode, sourceNode, event, ui, draggable);
+		 *     _onDragEvent("leave", targetNode, sourceNode, event, ui, draggable);
+		 *     _onDragEvent("stop", sourceNode, null, event, ui, draggable);
+		 */
 		_onDragEvent: function(
 			eventName,
 			node,
@@ -549,7 +550,7 @@
 					draggable: draggable,
 				}),
 				res = null,
-				that = this,
+				self = this,
 				$nodeTag = $(node.span);
 
 			if (dnd.smartRevert) {
@@ -598,9 +599,9 @@
 									event.type === "keydown" &&
 									event.which === $.ui.keyCode.ESCAPE
 								) {
-									that.ext.dnd._cancelDrag();
+									self.ext.dnd._cancelDrag();
 								} else if (event.type === "mousedown") {
-									that.ext.dnd._cancelDrag();
+									self.ext.dnd._cancelDrag();
 								}
 							}
 						);

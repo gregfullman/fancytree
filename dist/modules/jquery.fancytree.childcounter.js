@@ -19,8 +19,8 @@
  * Released under the MIT license
  * https://github.com/mar10/fancytree/wiki/LicenseInfo
  *
- * @version 2.30.2
- * @date 2019-01-13T08:17:01Z
+ * @version 2.30.3-0
+ * @date 2019-02-05T02:09:14Z
  */
 
 // To keep the global namespace clean, we wrap everything in a closure.
@@ -45,10 +45,10 @@
 	"use strict";
 
 	// The [coding guidelines](http://contribute.jquery.org/style-guide/js/)
-	// require jshint compliance.
+	// require jshint /eslint compliance.
 	// But for this sample, we want to allow unused variables for demonstration purpose.
 
-	/*jshint unused:false */
+	/*eslint-disable no-unused-vars */
 
 	// Adding methods
 	// --------------
@@ -139,7 +139,7 @@
 		// Every extension must be registered by a unique name.
 		name: "childcounter",
 		// Version information should be compliant with [semver](http://semver.org)
-		version: "2.30.2",
+		version: "2.30.3-0",
 
 		// Extension specific options and their defaults.
 		// This options will be available as `tree.options.childcounter.hideExpanded`

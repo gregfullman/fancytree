@@ -9,9 +9,11 @@
  * Released under the MIT license
  * https://github.com/mar10/fancytree/wiki/LicenseInfo
  *
- * @version 2.30.2
- * @date 2019-01-13T08:17:01Z
+ * @version 2.30.3-0
+ * @date 2019-02-05T02:09:14Z
  */
+
+// Allow to use multiple var statements inside a function
 
 (function(factory) {
 	if (typeof define === "function" && define.amd) {
@@ -268,13 +270,13 @@
 		},
 
 		treeLoad: function(ctx) {
-			var _this = this,
+			var self = this,
 				res = this._superApply(arguments);
 
 			res.done(function() {
-				_this.ext.fixed._adjustLayout.call(_this);
-				if (_this.options.fixed.resizable) {
-					_this.ext.fixed._makeTableResizable();
+				self.ext.fixed._adjustLayout.call(self);
+				if (self.options.fixed.resizable) {
+					self.ext.fixed._makeTableResizable();
 				}
 			});
 			return res;
@@ -320,10 +322,12 @@
 			var node = ctx.node;
 
 			function _removeChild(elem) {
-				var children = elem.children;
+				var i,
+					child,
+					children = elem.children;
 				if (children) {
-					for (var i = 0; i < children.length; i++) {
-						var child = children[i];
+					for (i = 0; i < children.length; i++) {
+						child = children[i];
 						if (child.trRight) {
 							$(child.trRight).remove();
 						}
@@ -449,7 +453,7 @@
 
 		nodeSetExpanded: function(ctx, flag, callOpts) {
 			var res,
-				_this = this,
+				self = this,
 				node = ctx.node,
 				$leftTr = $(node.tr),
 				fcn = this.options.fixed.classNames,
@@ -469,14 +473,14 @@
 						var $trLeft = $(child.tr),
 							$trRight = $trLeft.data(fcn.counterpart);
 
-						_this.ext.fixed._adjustRowHeight($trLeft, $trRight);
+						self.ext.fixed._adjustRowHeight($trLeft, $trRight);
 						if (!child.expanded) {
 							return "skip";
 						}
 					});
 
-					_this.ext.fixed._adjustColWidths();
-					_this.ext.fixed._adjustWrapperLayout();
+					self.ext.fixed._adjustColWidths();
+					self.ext.fixed._adjustWrapperLayout();
 				});
 			} else if (!flag && node.isExpanded()) {
 				node.visit(function(child) {
@@ -489,8 +493,8 @@
 					}
 				});
 
-				_this.ext.fixed._adjustColWidths();
-				_this.ext.fixed._adjustWrapperLayout();
+				self.ext.fixed._adjustColWidths();
+				self.ext.fixed._adjustWrapperLayout();
 				res = this._superApply(arguments);
 			} else {
 				res = this._superApply(arguments);
@@ -559,9 +563,8 @@
 
 				$trTop.find("th").each(function(idx) {
 					var $thTop = $(this),
-						$tdBottom = $trBottom.find("td").eq(idx);
-
-					var thTopWidth = $thTop.width(),
+						$tdBottom = $trBottom.find("td").eq(idx),
+						thTopWidth = $thTop.width(),
 						thTopOuterWidth = $thTop.outerWidth(),
 						tdBottomWidth = $tdBottom.width(),
 						tdBottomOuterWidth = $tdBottom.outerWidth(),
@@ -650,7 +653,7 @@
 		},
 
 		_adjustLayout: function() {
-			var _this = this,
+			var self = this,
 				$wrapper = this.$fixedWrapper,
 				fcn = this.options.fixed.classNames,
 				$topLeftWrapper = $wrapper.find("div." + fcn.topLeft),
@@ -660,7 +663,7 @@
 
 			$topLeftWrapper.find("table tr").each(function(idx) {
 				var $trRight = $topRightWrapper.find("tr:eq(" + idx + ")");
-				_this.ext.fixed._adjustRowHeight($(this), $trRight);
+				self.ext.fixed._adjustRowHeight($(this), $trRight);
 			});
 
 			$bottomLeftWrapper
@@ -668,11 +671,11 @@
 				.find("tr")
 				.each(function(idx) {
 					//			var $trRight = $bottomRightWrapper.find("tbody").find("tr:eq(" + idx + ")");
-					_this.ext.fixed._adjustRowHeight($(this));
+					self.ext.fixed._adjustRowHeight($(this));
 				});
 
-			_this.ext.fixed._adjustColWidths.call(this);
-			_this.ext.fixed._adjustWrapperLayout.call(this);
+			self.ext.fixed._adjustColWidths.call(this);
+			self.ext.fixed._adjustWrapperLayout.call(this);
 		},
 
 		//	treeSetFocus: function(ctx, flag) {
