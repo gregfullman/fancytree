@@ -5462,7 +5462,6 @@
 					} else {
 						node._setChildren([data]);
 						node.children[0].statusNodeType = type;
-						tree.render();
 					}
 					return node.children[0];
 				}
